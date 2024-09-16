@@ -14,7 +14,7 @@
 		"type": "git",
 		"url": "https://github.com/gonzarascon/drawy"
 	},
-	"version": "1.0.0",
+	"version": "0.1.0",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.esm.js",
 	"types": "dist/index.d.ts",
@@ -22,8 +22,7 @@
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
-			"require": "./dist/index.cjs",
-			"types": "./dist/index.d.ts"
+			"require": "./dist/index.cjs"
 		}
 	},
 	"type": "module",
