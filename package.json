@@ -1,6 +1,7 @@
 {
 	"name": "drawy",
 	"description": "Sidepanels for React have never been easier",
+	"license": "MIT",
 	"keywords": [
 		"react",
 		"sidepanel",
