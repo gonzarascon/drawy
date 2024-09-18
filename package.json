@@ -44,7 +44,8 @@
 	"scripts": {
 		"build": "tsup",
 		"dev": "tsup --watch",
-		"prepublishOnly": "bun run build"
+		"prepublishOnly": "bun run build",
+		"publish": "npm publish"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
