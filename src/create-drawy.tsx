@@ -64,9 +64,10 @@ export function createDrawy<P extends PanelsConfig>(panels: P) {
 						</Dialog.Portal>
 					</Dialog.Root>
 				)}
-
-				{openPanels.map((panelKey, index) => {
-					const shiftAmount = (openPanels.length - index - 1) * SHIFT_AMOUNT;
+				{Object.keys(panels).map((panelKey, index) => {
+					const panelIndex = openPanels.indexOf(panelKey as PanelKeys<P>);
+					const shiftAmount =
+						(openPanels.length - panelIndex - 1) * SHIFT_AMOUNT;
 
 					const applyTransition =
 						closingPanelIndex === index || closingPanelIndex === null;
@@ -74,7 +75,7 @@ export function createDrawy<P extends PanelsConfig>(panels: P) {
 					return (
 						<Dialog.Root
 							key={`${panelKey as string}-${index}`}
-							open
+							open={openPanels.includes(panelKey as PanelKeys<P>)}
 							onOpenChange={(isOpen) => {
 								if (!isOpen) close();
 							}}
@@ -86,14 +87,15 @@ export function createDrawy<P extends PanelsConfig>(panels: P) {
 										{
 											"transition-transform duration-300": applyTransition,
 										},
+										"data-[state=open]:animate-slide-in-right data-[state=closed]:animate-slide-out-right",
 										drawerClassName,
 									)}
 									style={{
-										zIndex: 1000 + index,
+										zIndex: 1000 + panelIndex,
 										transform: `translateX(-${shiftAmount}px)`,
 									}}
 									onTransitionEnd={() => {
-										if (closingPanelIndex === index) {
+										if (closingPanelIndex === panelIndex) {
 											setClosingPanelIndex(null);
 										}
 									}}
