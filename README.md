@@ -259,7 +259,7 @@ Drawy is designed to work seamlessly with Tailwind CSS. Ensure Tailwind CSS is s
    ```js
    // tailwind.config.js
    module.exports = {
-     content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/drawy/src/**/*.{js,jsx,ts,tsx}'],
+     content: ['./src/**/*.{js,jsx,ts,tsx}', './node_modules/drawy/**/*.{js,jsx,ts,tsx}'],
      // ...your tailwind config
      theme: {
         extend: {
