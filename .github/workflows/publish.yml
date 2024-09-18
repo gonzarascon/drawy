@@ -36,21 +36,3 @@ jobs:
         run: bun run publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Generate Release Notes
-        id: release_notes
-        uses: actions/generate-release-notes@v1
-        with:
-          config-name: default
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: ${{ steps.release_notes.outputs.notes }}
-          draft: false
-          prerelease: false
