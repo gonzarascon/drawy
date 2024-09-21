@@ -226,31 +226,47 @@ export default HomePage;
 
 ### `createDrawy(panels)`
 
-Creates the Drawy context and provider.
+Creates a Drawy instance with the specified panels.
 
-- **Parameters**:
-  - `panels`: An object mapping panel keys to React component types.
-- **Returns**:
-  - `DrawyProvider`: The context provider component.
-  - `useDrawy`: Hook to access Drawy functions and state.
+#### Parameters
 
-### `DrawyProvider`
+- `panels`: `Record<string, React.ReactNode>` - An object where keys are panel identifiers and values are React components to be rendered in the panels.
 
-Wraps your application to provide Drawy context.
+#### Returns
 
-- **Props**:
-  - `children`: The child components.
-  - `initialOpenPanels` (optional): An array of panel keys to open initially.
+An object containing:
 
-### `useDrawy()`
+- `DrawyProvider`: A React component to wrap your application.
+- `useDrawy`: A custom hook to access Drawy functionality.
 
-Hook to access Drawy functions and state.
+### DrawyProvider
 
-- **Returns**:
-  - `open(panelKey)`: Opens the specified panel.
-  - `close()`: Closes the topmost panel.
-  - `closeAll()`: Closes all open panels.
-  - `openPanels`: An array of currently open panel keys.
+The main component that provides the Drawy context to its children.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | Required | The child components to be rendered. |
+| `initialOpenPanels` | `PanelKeys<P>[]` | `[]` | An optional array of panel keys to be initially opened. |
+| `drawerClassName` | `string` | `undefined` | An optional CSS class name for the drawer component. |
+| `closeComponent` | `React.ReactNode` | `<span>&times</span>` | An optional custom close component. |
+
+### useDrawy
+
+A custom hook to access Drawy functionality within your components.
+
+#### Returns
+
+An object containing:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `open` | `(panel: PanelKeys<P>) => void` | Function to open a specific panel. |
+| `close` | `() => void` | Function to close the most recently opened panel. |
+| `closeAll` | `() => void` | Function to close all open panels. |
+| `openPanels` | `PanelKeys<P>[]` | Array of currently open panel keys. |
+
 
 ## Tailwind CSS Integration
 

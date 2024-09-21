@@ -7,9 +7,18 @@ export type PanelsConfig = Record<string, React.ReactNode>;
 type PanelKeys<P> = keyof P;
 
 interface DrawyProviderProps<P> {
+	/** The child components to be rendered. */
 	children: React.ReactNode;
+	/** An optional array of panel keys to be initially opened. */
 	initialOpenPanels?: PanelKeys<P>[];
+	/** An optional CSS class name for the drawer component.
+	 * Useful for overriding the default style of the drawer
+	 */
 	drawerClassName?: string;
+	/** An optional custom close component.
+	 *   You can replace the default "X" displayed
+	 */
+	closeComponent?: React.ReactNode;
 }
 
 const SHIFT_AMOUNT = 20;
@@ -29,7 +38,9 @@ export function createDrawy<P extends PanelsConfig>(panels: P) {
 		children,
 		initialOpenPanels = [],
 		drawerClassName,
+		closeComponent,
 	}) => {
+		const CloseComponent = closeComponent ?? <span>&times</span>;
 		const [openPanels, setOpenPanels] =
 			React.useState<PanelKeys<P>[]>(initialOpenPanels);
 		const [closingPanelIndex, setClosingPanelIndex] = React.useState<
@@ -106,7 +117,7 @@ export function createDrawy<P extends PanelsConfig>(panels: P) {
 											type="button"
 											className="absolute top-4 right-4 text-2xl"
 										>
-											&times;
+											{CloseComponent}
 										</button>
 									</Dialog.Close>
 								</Dialog.Content>
