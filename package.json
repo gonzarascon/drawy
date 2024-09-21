@@ -13,7 +13,7 @@
 	"author": "Gonzarascon <gonzarascon@gmail.com>",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/gonzarascon/drawy"
+		"url": "git+https://github.com/gonzarascon/drawy.git"
 	},
 	"version": "0.2.7",
 	"main": "dist/index.cjs.js",
@@ -44,8 +44,7 @@
 	"scripts": {
 		"build": "tsup",
 		"dev": "tsup --watch",
-		"prepublishOnly": "bun run build",
-		"publish": "npm publish"
+		"prepublishOnly": "bun run build"
 	},
 	"dependencies": {
 		"clsx": "^2.1.1",
